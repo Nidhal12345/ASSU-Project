@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Devis - Assuflex</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            color: #333;
+            margin: 30px;
+        }
+
+        h1, h2, h3 {
+            color: #005BAC;
+        }
+
+        .header {
+            border-bottom: 3px solid #F58220;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            float: right;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-left: 5px solid #F58220;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #F5F5F5;
+            text-align: left;
+            padding: 8px;
+            color: #005BAC;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #ccc;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            margin-top: 40px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Devis d'Assurance Santé</h1>
+    <p>Date : <span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span></p>
+</div>
+
+<div class="section">
+    <div class="section-title">Informations du Souscripteur</div>
+    <table>
+        <tr><th>Civilité</th><td th:text="${data.civility}"></td></tr>
+        <tr><th>Nom</th><td th:text="${data.lastName}"></td></tr>
+        <tr><th>Prénom</th><td th:text="${data.firstName}"></td></tr>
+        <tr><th>Date de naissance</th><td th:text="${data.birthDate}"></td></tr>
+        <tr><th>Profession</th><td th:text="${data.profession}"></td></tr>
+        <tr><th>Régime</th><td th:text="${data.regime}"></td></tr>
+        <tr><th>Code postal</th><td th:text="${data.postalCode}"></td></tr>
+        <tr><th>Téléphone</th><td th:text="${data.phoneNumber}"></td></tr>
+        <tr><th>Email</th><td th:text="${data.email}"></td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="section-title">Informations du Conjoint</div>
+    <table>
+        <tr><th>Prénom</th><td th:text="${data.spouseFirstName}"></td></tr>
+        <tr><th>Nom</th><td th:text="${data.spouseLastName}"></td></tr>
+        <tr><th>Date de naissance</th><td th:text="${data.spouseBirthDate}"></td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="section-title">Enfants à Charge</div>
+    <table class="table-bordered">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="child : ${data.childrenInfo}">
+            <td th:text="${child.firstName}"></td>
+            <td th:text="${child.lastName}"></td>
+            <td th:text="${child.birthDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <div class="section-title">Détails de la Couverture</div>
+    <table>
+        <tr><th>Formule choisie</th><td th:text="${data.coverageOption}"></td></tr>
+        <tr><th>Date de début</th><td th:text="${data.startDate}"></td></tr>
+        <tr><th>Soins courants</th><td th:text="${data.regularCare} + ' / 5'"></td></tr>
+        <tr><th>Hospitalisation</th><td th:text="${data.hospitalization} + ' / 5'"></td></tr>
+        <tr><th>Dentaire</th><td th:text="${data.dental} + ' / 5'"></td></tr>
+        <tr><th>Optique</th><td th:text="${data.optical} + ' / 5'"></td></tr>
+    </table>
+</div>
+
+<div class="footer-note">
+    <p>
+        Merci d’avoir effectué une simulation avec Assuflex. <br>
+        Un conseiller peut vous contacter prochainement pour finaliser votre souscription.
+    </p>
+</div>
+
+</body>
+</html>
