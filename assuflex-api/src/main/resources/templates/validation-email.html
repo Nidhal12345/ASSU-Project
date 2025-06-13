@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+    .email-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .header {
+        background: linear-gradient(135deg, #4caf50, #28a745);
+        color: #ffffff;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .content {
+        padding: 30px;
+        color: #333333;
+    }
+    .content p {
+        line-height: 1.8;
+        font-size: 16px;
+        margin: 15px 0;
+    }
+    .content strong {
+        color: #28a745;
+    }
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .button {
+        display: inline-block;
+        background: linear-gradient(135deg, #28a745, #4caf50);
+        color: #ffffff;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .button:hover {
+        background: linear-gradient(135deg, #4caf50, #28a745);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(40, 167, 69, 0.6);
+    }
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f1f1f1;
+        font-size: 14px;
+        color: #888888;
+        border-top: 1px solid #dddddd;
+    }
+    .footer a {
+        color: #28a745;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Félicitations, votre compte a été validé !</h1>
+    </div>
+    <div class="content">
+        <p>Bonjour <span th:text="${firstName}">Utilisateur</span>,</p>
+
+        <p>Nous avons le plaisir de vous informer que votre compte a été validé avec succès 🎉.</p>
+        <p>Vous pouvez maintenant vous connecter à l'application <strong>ProPilot</strong> et commencer à l'utiliser !</p>
+        <p>Nous vous remercions de votre patience et nous réjouissons de vous avoir parmi nous.</p>
+        <p>
+            <a href="http://your-app-url/login" class="button">Se connecter</a>
+
+        </p>
+    </div>
+    <div class="footer">
+        &copy; 2024 ProPilot | Tous droits réservés.
+    </div>
+</div>
+</body>
+
+</html>
+

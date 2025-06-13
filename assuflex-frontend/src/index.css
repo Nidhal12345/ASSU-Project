@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap');
+
+/* CSS Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Additional resets */
+* {
+  box-sizing: border-box;
+}
+.radix-popover-content {
+  overflow: visible !important;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* AssuFlex Brand System */
+    
+    /* Primary Colors */
+    --primary: 21 89% 54%; /* #F26522 */
+    --primary-light: 21 100% 66%; /* #FF8A50 */
+    --primary-dark: 21 87% 44%; /* #D14E0F */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    /* Secondary Colors */
+    --secondary: 210 100% 25%; /* #003E7E */
+    --secondary-light: 210 100% 34%; /* #0055AB */
+    --secondary-dark: 210 100% 18%; /* #002C5C */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    /* Background & Surface */
+    --background: 216 33% 97%; /* #F5F7FA */
+    --foreground: 218 33% 17%; /* #1E293B */
+    
+    /* Card */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 218 33% 17%; /* #1E293B */
+    
+    /* Popover */
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 218 33% 17%; /* #1E293B */
+    
+    /* Border & Muted */
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%; /* #E2E8F0 */
+    --ring: 21 89% 54%; /* #F26522 */
+    --muted: 214 32% 91%; /* #E2E8F0 */
+    --muted-foreground: 218 17% 47%; /* #64748B */
+    
+    /* Accent */
+    --accent: 216 33% 97%; /* #F5F7FA */
+    --accent-foreground: 218 33% 17%; /* #1E293B */
+    
+    /* Destructive */
+    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    /* Border Radius */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 218 33% 10%; /* #121A29 - dark version of light background */
+    --foreground: 0 0% 98%; /* #FAFAFA */
+    
+    --card: 218 33% 12%; /* #172032 - slightly lighter than background */
+    --card-foreground: 0 0% 98%; /* #FAFAFA */
+    
+    --popover: 218 33% 12%; /* #172032 */
+    --popover-foreground: 0 0% 98%; /* #FAFAFA */
+    
+    --primary: 21 89% 54%; /* Keep primary color the same */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --secondary: 210 100% 40%; /* #0055AB - slightly brighter in dark mode */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --muted: 218 33% 20%; /* #243552 - muted background in dark mode */
+    --muted-foreground: 214 20% 65%; /* #94A3B8 */
+    
+    --accent: 218 33% 20%; /* #243552 */
+    --accent-foreground: 0 0% 98%; /* #FAFAFA */
+    
+    --destructive: 0 62.8% 30.6%; /* Darker red for dark mode */
+    --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+    
+    --border: 218 33% 25%; /* #2C3E67 - darker border for dark mode */
+    --input: 218 33% 25%; /* #2C3E67 */
+    --ring: 21 89% 54%; /* Keep primary color for ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, .h1 {
+    @apply font-heading text-5xl font-bold leading-tight tracking-tight;
+  }
+  
+  h2, .h2 {
+    @apply font-heading text-4xl font-bold leading-tight tracking-tight;
+  }
+  
+  h3, .h3 {
+    @apply font-heading text-3xl font-semibold leading-snug tracking-tight;
+  }
+  
+  h4, .h4 {
+    @apply font-heading text-2xl font-semibold leading-normal;
+  }
+  
+  h5, .h5 {
+    @apply font-heading text-xl font-medium leading-normal;
+  }
+  
+  h6, .h6 {
+    @apply font-heading text-lg font-medium leading-relaxed;
+  }
+  
+  .body-small {
+    @apply text-sm leading-loose tracking-wide;
+  }
+  
+  .caption {
+    @apply text-xs leading-relaxed tracking-wider text-assuflex-text-secondary;
+  }
+}
+
+/* Custom styles for the multi-step form */
+.step-container {
+  @apply relative w-full overflow-hidden;
+}
+
+.loading-spinner {
+  @apply inline-block w-5 h-5 border-2 border-white/30 rounded-full border-t-white animate-spin;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply hidden;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head><meta charset="UTF-8"/><title>Plan accepté</title></head>
+<body>
+<p>Bonjour <span th:text="${firstName}">Client</span>,</p>
+<p>Votre plan d’assurance a été vérifié et accepté.</p>
+<p>Pour finaliser votre souscription, veuillez cliquer sur le bouton ci-dessous :</p>
+<p>
+    <a th:href="${checkoutUrl}"
+       style="display:inline-block;padding:12px 20px;
+                background:#007bff;color:white;text-decoration:none;
+                border-radius:4px;">
+        Payer maintenant
+    </a>
+</p>
+<p>Merci de votre confiance,<br/>L’équipe AssuFlex</p>
+</body>
+</html>
