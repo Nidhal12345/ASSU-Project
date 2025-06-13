@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat d'Assurance</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header p {
+            color: #666;
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #2c5aa0;
+        }
+
+        .section h2 {
+            color: #2c5aa0;
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .info-item label {
+            font-weight: bold;
+            color: #2c5aa0;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .info-item span {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .coverage-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .coverage-item h3 {
+            color: #2c5aa0;
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+
+        .coverage-item .status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status.included {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.not-included {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .price-section {
+            background: #2c5aa0;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .price-section h2 {
+            margin: 0 0 15px 0;
+            color: white;
+            border: none;
+            padding: 0;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .price-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .price-item label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .price-item .amount {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #2c5aa0;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .signature-box {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- En-tête -->
+    <div class="header">
+        <h1 th:text="${contract.contractName}">Contrat d'Assurance</h1>
+        <p>ID du Contrat: <span th:text="${contract.id}">12345</span></p>
+    </div>
+
+    <!-- Informations du Contrat -->
+    <div class="section">
+        <h2>Informations du Contrat</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Date de Début</label>
+                <span th:text="${#temporals.format(contract.startDate, 'dd/MM/yyyy')}">01/01/2024</span>
+            </div>
+            <div class="info-item">
+                <label>Date de Fin</label>
+                <span th:text="${#temporals.format(contract.endDate, 'dd/MM/yyyy')}">31/12/2024</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations Tarifaires -->
+    <div class="price-section">
+        <h2>Détails Tarifaires</h2>
+        <div class="price-grid">
+            <div class="price-item">
+                <label>Prime Mensuelle</label>
+                <div class="amount" th:text="'€' + ${#numbers.formatDecimal(contract.price, 0, 2)}">150,00€</div>
+            </div>
+            <div class="price-item">
+                <label>Prime Annuelle</label>
+                <div class="amount" th:text="'€' + ${#numbers.formatDecimal(contract.annualPrice, 0, 2)}">1 800,00€</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Détails de Couverture -->
+    <div class="section">
+        <h2>Détails de Couverture</h2>
+        <div class="coverage-grid">
+            <div class="coverage-item">
+                <h3>Soins Courants</h3>
+                <div class="status" th:class="${contract.regularCare != null and contract.regularCare != '' ? 'status included' : 'status not-included'}"
+                     th:text="${contract.regularCare != null and contract.regularCare != '' ? contract.regularCare : 'Non Inclus'}">
+                    Inclus
+                </div>
+            </div>
+            <div class="coverage-item">
+                <h3>Hospitalisation</h3>
+                <div class="status" th:class="${contract.hospitalization != null and contract.hospitalization != '' ? 'status included' : 'status not-included'}"
+                     th:text="${contract.hospitalization != null and contract.hospitalization != '' ? contract.hospitalization : 'Non Inclus'}">
+                    Inclus
+                </div>
+            </div>
+            <div class="coverage-item">
+                <h3>Soins Dentaires</h3>
+                <div class="status" th:class="${contract.dental != null and contract.dental != '' ? 'status included' : 'status not-included'}"
+                     th:text="${contract.dental != null and contract.dental != '' ? contract.dental : 'Non Inclus'}">
+                    Inclus
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations de l'Assuré Principal -->
+    <div class="section">
+        <h2>Assuré Principal</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Civilité</label>
+                <span th:text="${contract.civility}">M.</span>
+            </div>
+            <div class="info-item">
+                <label>Nom Complet</label>
+                <span th:text="${contract.firstName + ' ' + contract.lastName}">Jean Dupont</span>
+            </div>
+            <div class="info-item">
+                <label>Date de Naissance</label>
+                <span th:text="${#temporals.format(contract.birthDate, 'dd/MM/yyyy')}">15/05/1980</span>
+            </div>
+            <div class="info-item">
+                <label>Numéro de Téléphone</label>
+                <span th:text="${contract.phoneNumber}">+33123456789</span>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <label>Adresse Email</label>
+                <span th:text="${contract.email}">jean.dupont@email.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations du Conjoint (si applicable) -->
+    <div class="section" th:if="${contract.spouseFirstName != null and contract.spouseFirstName != ''}">
+        <h2>Informations du Conjoint</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Nom du Conjoint</label>
+                <span th:text="${contract.spouseFirstName + ' ' + contract.spouseLastName}">Marie Dupont</span>
+            </div>
+            <div class="info-item">
+                <label>Date de Naissance</label>
+                <span th:text="${#temporals.format(contract.spouseBirthDate, 'dd/MM/yyyy')}">20/08/1982</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations des Enfants (si applicable) -->
+    <div class="section" th:if="${contract.childInfo != null}">
+        <h2>Informations des Enfants</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Détails des Enfants</label>
+                <span th:text="${contract.childInfo}">Informations détaillées des enfants</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conditions Générales -->
+    <div class="section">
+        <h2>Conditions Générales</h2>
+        <p>Ce contrat est valide à partir de la date de début mentionnée ci-dessus et est soumis aux termes et conditions de la police d'assurance. Toutes les primes doivent être payées à temps pour maintenir la couverture. Les détails de couverture sont tels que spécifiés dans le document de police.</p>
+        <p>En signant ce contrat, les deux parties acceptent les termes et conditions décrits dans la documentation complète de la police.</p>
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature-box">
+            <p><strong>Signature de l'Assuré</strong></p>
+            <p>Date: _______________</p>
+        </div>
+        <div class="signature-box">
+            <p><strong>Représentant de la Compagnie</strong></p>
+            <p>Date: _______________</p>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+        <p>Généré le <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm')}">01/01/2024 10:00</span></p>
+        <p>Ce document est généré par ordinateur et ne nécessite pas de signature sauf indication contraire.</p>
+    </div>
+</div>
+</body>
+</html>
