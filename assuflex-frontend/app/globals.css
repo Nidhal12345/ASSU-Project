@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.radix-popover-content {
+  overflow: visible !important;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 98%; /* #f9f9f9 (très clair pour fond global) */
+    --foreground: 0 0% 11%; /* #1D1D1D (textes foncés) */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 0 0% 11%;
+
+    --primary: 21 89% 54%; /* #F26522 (orange logo) */
+    --primary-foreground: 21 89% 54%;
+
+    --secondary: 211 100% 25%; /* #003E7E (bleu foncé) */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%; /* #f5f5f5 (gris léger) */
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 207 70% 94%; /* #E6F1FA (bleu très clair) */
+    --accent-foreground: 211 100% 25%;
+
+    --border: 0 0% 90%; /* #e5e5e5 */
+    --input: 0 0% 90%;
+
+    --ring: 21 89% 54%; /* même que primaire */
+    --radius: 0.5rem;
+
+    --error: 0 84% 60%; /* Rouge erreur */
+    --success: 122 39% 49%; /* Vert succès */
+  }
+
+  .dark {
+    --background: 0 0% 11%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 100%;
+
+    --primary: 21 89% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 211 100% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 211 100% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+
+    --ring: 21 89% 54%;
+
+    --error: 0 62% 41%;
+    --success: 122 25% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
